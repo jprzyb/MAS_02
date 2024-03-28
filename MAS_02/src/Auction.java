@@ -1,10 +1,10 @@
 import java.util.Date;
 
 public class Auction {
-    private Date date;
-    private int id;
-    private Property property;
-    private double actualPrice;
+    private final Date date;
+    private final int id;
+    private final Property property;
+    private final double actualPrice;
     public Auction(Property property, Date date, double actualPrice, int id) {
         this.date = date;
         this.id = id;
@@ -14,9 +14,7 @@ public class Auction {
 
     @Override
     public String toString() {
-        StringBuilder res = new StringBuilder("");
-        res.append("Property " + property + " is on sale for "+actualPrice+" at "+date+".");
-        return res.toString();
+        return "Property " + property + " is on sale for " + actualPrice + " at " + date + ".";
     }
 
     public int getId() {
@@ -25,9 +23,5 @@ public class Auction {
 
     public Property getProperty() {
         return property;
-    }
-
-    public Worker getWorker(){
-        return Worker.getWorkers(id);
     }
 }

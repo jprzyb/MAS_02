@@ -4,9 +4,9 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Worker {
-    private String firstName;
-    private String lastName;
-    private static List<Worker> workers = new ArrayList<>();
+    private final String firstName;
+    private final String lastName;
+    private static final List<Worker> workers = new ArrayList<>();
 
     Map<Integer, Property> auctions;
 
@@ -22,21 +22,11 @@ public class Worker {
             auctions.put(a.getId(), a.getProperty());
         }
     }
-
-    public static Worker getWorkers(int id){
-        for(Worker w : workers){
-            if(w.auctions.containsKey(id)) return w;
-        }
-        return null;
-    }
-
     @Override
     public String toString(){
-        StringBuilder res = new StringBuilder("");
-        res.append("Worker "+firstName+" "+lastName+" are take care of auctions:\n");
-        auctions.forEach((key, value) -> {
-            res.append("\t- ").append(value).append("\n");
-        });
+        StringBuilder res = new StringBuilder();
+        res.append("Worker ").append(firstName).append(" ").append(lastName).append(" are take care of auctions:\n");
+        auctions.forEach((key, value) -> res.append("\t- ").append(value).append("\n"));
 
         return res.toString();
     }

@@ -1,9 +1,7 @@
-import java.util.Map;
 import java.util.Objects;
-import java.util.TreeMap;
 
 public class Property{
-    private double price;
+    private final double price;
     int id;
 
     public Property(int id, double price) {
