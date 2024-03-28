@@ -5,7 +5,6 @@ public class Adress {
     private String city;
     private String street;
     private int buildingNumber;
-    private List<Apartment> apartments;
     private int apartmentNumber;
 
     public Adress(String postalCode, String city, String street, int buildingNumber) {
@@ -13,6 +12,7 @@ public class Adress {
         this.city = city;
         this.street = street;
         this.buildingNumber = buildingNumber;
+        this.apartmentNumber = -8888;
     }
 
     public Adress(String postalCode, String city, String street, int buildingNumber, int apartmentNumber) {
@@ -20,6 +20,7 @@ public class Adress {
         this.city = city;
         this.street = street;
         this.buildingNumber = buildingNumber;
+        this.apartmentNumber = apartmentNumber;
     }
 
 
@@ -59,5 +60,13 @@ public class Adress {
     }
     public void setApartmentNumber(int apartmentNumber) {
         this.apartmentNumber=apartmentNumber;
+    }
+
+    @Override
+    public String toString() {
+        if (apartmentNumber == -8888){
+            return postalCode+", "+city+", "+street+" "+buildingNumber;
+        }
+        return postalCode+", "+city+", "+street+" "+buildingNumber+"/"+apartmentNumber;
     }
 }

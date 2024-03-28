@@ -1,17 +1,27 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Building {
     private Adress adress;
     private List<Apartment> apartments;
 
-    public List<Apartment> getApartments() {
-        return apartments;
+    public Building(Adress adress, List<Apartment> apartments) {
+        this.adress = adress;
+        this.apartments = new ArrayList<>();
+        this.apartments.addAll(apartments);
     }
-
-    public void addApartment(Apartment apartment) {
+    public Building(Adress adress, Apartment apartment) {
+        this.adress = adress;
+        this.apartments = new ArrayList<>();
         this.apartments.add(apartment);
     }
 
+    public List<Apartment> getApartments() {
+        return apartments;
+    }
+    public void addApartment(Apartment apartment) {
+        this.apartments.add(apartment);
+    }
     public void setPostalCode(String postalcode){
         this.adress.setPostalCode(postalcode);
     }
@@ -38,5 +48,19 @@ public class Building {
     }
     public void setAdress(Adress adress) {
         this.adress = adress;
+    }
+
+    private String getAllApartmentsNumbers(){
+        StringBuilder s = new StringBuilder();
+        for(Apartment a : apartments){
+            s.append(a.getApartmentNumber());
+            s.append(", ");
+        }
+        s.delete(s.lastIndexOf(","),s.lastIndexOf(",")+2);
+        return s.toString();
+    }
+    @Override
+    public String toString() {
+        return "Building at " + adress + ", have apartments with numbers: " + getAllApartmentsNumbers() + ".";
     }
 }

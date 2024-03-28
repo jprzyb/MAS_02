@@ -1,11 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Apartment {
     private Adress adress;
+    private Property property;
+    private static List<Apartment> apartments = new ArrayList<>();
 
-    public Apartment(Adress adress) {
+    public Apartment(Adress adress, Property property) {
+        this.property = property;
         this.adress = adress;
+        apartments.add(this);
     }
-    public Apartment(String postalCode, String city, String street, int buildingNumber, int apartmentNumber) {
+    public Apartment(String postalCode, String city, String street, int buildingNumber, int apartmentNumber, Property property) {
+        this.property = property;
         this.adress = new Adress(postalCode, city, street, buildingNumber, apartmentNumber);
+        apartments.add(this);
     }
 
     public void setPostalCode(String postalcode){
@@ -14,6 +23,12 @@ public class Apartment {
     public void setCity(String city){
         this.adress.setCity(city);
     }
+
+    @Override
+    public String toString() {
+        return adress.toString();
+    }
+
     public void setStreet(String street){
         this.adress.setStreet(street);
     }
@@ -44,5 +59,13 @@ public class Apartment {
     }
     public Adress getAdress(){
         return this.adress;
+    }
+    public static Apartment getInstance(int id){
+        if(!apartments.isEmpty()){
+            for(Apartment a : apartments){
+                if(a.property.getId() == id) return a;
+            }
+        }
+        return null;
     }
 }

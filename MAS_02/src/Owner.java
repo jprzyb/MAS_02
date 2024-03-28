@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Owner {
-    private List<Property> propertiesOwned = new ArrayList<>();
+    private List<Property> propertiesOwned;
     private int telNr;
     private String firstName;
     private String lastName;
@@ -11,6 +11,7 @@ public class Owner {
         this.telNr = telNr;
         this.firstName = firstName;
         this.lastName = lastName;
+        propertiesOwned = new ArrayList<>();
     }
     public void addProperty(Property property){
         this.propertiesOwned.add(property);
@@ -18,9 +19,9 @@ public class Owner {
     public void removeProperty(Property property){
         this.propertiesOwned.remove(property);
     }
-    public void removeProperty(Adress adress){
+    public void removeProperty(Adress property){
         for(Property p : propertiesOwned){
-            if (p.getAdress().equals(adress)) propertiesOwned.remove(p);
+            if (p.equals(property)) propertiesOwned.remove(p);
         }
     }
 
@@ -46,5 +47,12 @@ public class Owner {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void showProperties(){
+        System.out.println("Owner "+firstName+" "+lastName+" has:");
+        for(Property p : propertiesOwned){
+            System.out.println(p);
+        }
     }
 }
