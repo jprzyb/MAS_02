@@ -21,13 +21,31 @@ public class Worker {
         if(!auctions.containsKey(a.getId())){
             auctions.put(a.getId(), a.getProperty());
         }
+        if(!a.workers.contains(this)){
+            a.addWorker(this);
+        }
     }
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
-        res.append("Worker ").append(firstName).append(" ").append(lastName).append(" are take care of auctions:\n");
+        res.append("Worker ").append(firstName).append(" ").append(lastName).append(" takes care of auctions:\n");
         auctions.forEach((key, value) -> res.append("\t- ").append(value).append("\n"));
 
         return res.toString();
+    }
+
+    public Property findAuctionQualif(int id){
+        if(!auctions.containsKey(id)){
+            try {
+                throw new Exception("Unable to find auction with id: "+id);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return auctions.get(id);
+    }
+
+    public String workerAsString(){
+        return firstName+" "+lastName;
     }
 }

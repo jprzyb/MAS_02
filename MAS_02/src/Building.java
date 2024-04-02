@@ -5,15 +5,9 @@ public class Building {
     private final Adress adress;
     private final List<Apartment> apartments;
 
-    public Building(Adress adress, List<Apartment> apartments) {
+    public Building(Adress adress) {
         this.adress = adress;
         this.apartments = new ArrayList<>();
-        this.apartments.addAll(apartments);
-    }
-    public Building(Adress adress, Apartment apartment) {
-        this.adress = adress;
-        this.apartments = new ArrayList<>();
-        this.apartments.add(apartment);
     }
     private String getAllApartmentsNumbers(){
         StringBuilder s = new StringBuilder();
@@ -23,6 +17,11 @@ public class Building {
         }
         s.delete(s.lastIndexOf(","),s.lastIndexOf(",")+2);
         return s.toString();
+    }
+    public void addApartment(Apartment apartment){
+        if(!apartments.contains(apartment)){
+            apartments.add(apartment);
+        }
     }
     @Override
     public String toString() {
