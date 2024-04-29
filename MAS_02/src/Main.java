@@ -13,11 +13,12 @@ public class Main {
         Apartment apartment2 = Apartment.createApartament(building1, new Adress("03-813","Warsaw","Terespolska",3,394));
         Apartment apartment3 = Apartment.createApartament(building2, new Adress("01-111","Warsaw","Zlota",41,1));
         Apartment apartment4 = Apartment.createApartament(building2, new Adress("01-111","Warsaw","Zlota",41,2));
-        Owner owner = new Owner("Jacek","Placek");
-        Property property1 = new Property(1,1000000,owner,apartment1);
-        Property property2 = new Property(2, 2000000,owner,apartment2 );
-        Property property3 = new Property(3, 1500000,owner,apartment3 );
-        Property property4 = new Property(4, 900000, owner,apartment4);
+        Owner owner1 = new Owner("Jacek","Placek");
+        Owner owner2 = new Owner("Krzysiek","Pysiek");
+        Property property1 = new Property(1,1000000,apartment1, owner1, owner2);
+        Property property2 = new Property(2, 2000000,apartment2, owner1);
+        Property property3 = new Property(3, 1500000,apartment3, owner2);
+        Property property4 = new Property(4, 900000,apartment4, owner2, owner1);
         Client client1 = new Client("Worek", "Pieniedzy");
         Client client2 = new Client("Worek", "Kasy");
         Auction auction1 = new Auction(property1, new Date(), property1.getPrice(), 1);
@@ -36,12 +37,15 @@ public class Main {
         System.out.println(auction2);
         System.out.println(auction3);
 
-        // Association with attribute: Owner 1-(Property)-* Apartment (1-*)
+//         Association with attribute: Owner 1-(Property)-* Apartment
+//        !!!!!!!!!!!!!WRONG IT NEEDS TO BE *-*
+//        fixed :D now properties can have many owners
+//         Association with attribute: Owner *-(Property)-* Apartment
         System.out.println("\n=============== Asocjacja z atrybutem ===============");
-        owner.addProperty(property1);
-        owner.addProperty(property2);
-        owner.addProperty(property3);
-        System.out.println(owner);
+        owner1.addProperty(property1);
+        owner1.addProperty(property2);
+        owner1.addProperty(property3);
+        System.out.println(owner1);
         System.out.println(property1);
         System.out.println(property2);
         System.out.println(property3);

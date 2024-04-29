@@ -1,23 +1,32 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Property{
     private final double price;
-    private Owner owner;
+    private List<Owner> owners;
     private Apartment apartment;
     int id;
 
-    public Property(int id, double price, Owner owner, Apartment apartment) {
+    public Property(int id, double price, Apartment apartment, Owner... ownersCol) {
+        owners = new ArrayList<>();
         this.id = id;
         this.price = price;
-        this.owner = owner;
         this.apartment = apartment;
-        owner.addProperty(this);
+        for(Owner o : ownersCol){
+            owners.add(o);
+            o.addProperty(this);
+        }
         apartment.setProperty(this);
     }
 
     @Override
     public String toString(){
-        return "Property:\nid: "+id+" |  worth "+price +", owner: "+owner.ownerAsString();
+        String ownersString = "";
+        for (Owner o : owners){
+            ownersString += "\n"+o.ownerAsString();
+        }
+        return "Property:\nid: "+id+" |  worth "+price +", owners: "+ownersString;
     }
 
     public String propertyToString(){
