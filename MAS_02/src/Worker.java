@@ -8,7 +8,7 @@ public class Worker {
     private final String lastName;
     private static final List<Worker> workers = new ArrayList<>();
 
-    Map<Integer, Property> auctions;
+    public Map<Integer, Auction> auctions;
 
     public Worker(String firstName, String lastName){
          this.firstName = firstName;
@@ -19,7 +19,7 @@ public class Worker {
 
     public void addAuction(Auction a){
         if(!auctions.containsKey(a.getId())){
-            auctions.put(a.getId(), a.getProperty());
+            auctions.put(a.getId(), a);
         }
         if(!a.workers.contains(this)){
             a.addWorker(this);
@@ -34,7 +34,7 @@ public class Worker {
         return res.toString();
     }
 
-    public Property findAuctionQualif(int id){
+    public Auction findAuctionQualif(int id){
         if(!auctions.containsKey(id)){
             try {
                 throw new Exception("Unable to find auction with id: "+id);

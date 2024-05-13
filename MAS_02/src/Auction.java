@@ -59,7 +59,7 @@ public class Auction {
         }
     }
     private String clientsToString(){
-        StringBuilder res = new StringBuilder("");
+        StringBuilder res = new StringBuilder();
 
         for(Client c : clients){
             res.append(c.clientToString()).append("\n");
@@ -68,9 +68,8 @@ public class Auction {
         return res.toString();
     }
     public String auctionToString(){
-        StringBuilder res = new StringBuilder("Auction: ");
-        return res.append("Property ").append(property).append(" is on sale for ").append(actualPrice)
-                .append(" at ").append(date).toString();
+        return "Auction: " + "Property " + property + " is on sale for " + actualPrice +
+                " at " + date;
     }
     public String auctionWorkersToString(){
         StringBuilder res = new StringBuilder("Workers:\n");

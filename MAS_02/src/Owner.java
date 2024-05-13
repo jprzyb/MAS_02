@@ -30,7 +30,7 @@ public class Owner {
     }
 
     private String getPropertiesAsString() {
-        StringBuilder res =  new StringBuilder("");
+        StringBuilder res =  new StringBuilder();
         for(Property p : propertiesOwned){
             res.append(" - ").append(p.propertyToString()).append("\n");
         }

@@ -3,11 +3,12 @@ import java.util.List;
 
 public class Apartment {
     private final Adress adress;
-    private Property property;
+    private List<Property> properties;
     private Building building;
     private static final List<Apartment> apartments = new ArrayList<>();
 
     private Apartment(Adress adress, Building building) {
+        properties = new ArrayList<>();
         this.adress = adress;
         this.building = building;
         apartments.add(this);
@@ -37,7 +38,13 @@ public class Apartment {
         System.out.println("This apartment:\n"+this.toString()+"\n belongs to building:\n"+building.toString());
     }
 
-    public void setProperty(Property property) {
-        this.property = property;
+    public void addProperties(Property... properties) {
+        this.properties.addAll(List.of(properties));
+    }
+    public void addProperties(Property property) {
+        this.properties.add(property);
+    }
+    public List<Property> getProperties(){
+        return properties;
     }
 }

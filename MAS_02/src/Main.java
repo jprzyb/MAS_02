@@ -13,10 +13,10 @@ public class Main {
         Apartment apartment4 = Apartment.createApartament(building2, new Adress("01-111","Warsaw","Zlota",41,2));
         Owner owner1 = new Owner("Jacek","Placek");
         Owner owner2 = new Owner("Krzysiek","Pysiek");
-        Property property1 = new Property(1,1000000,apartment1, owner1, owner2);
-        Property property2 = new Property(2, 2000000,apartment2, owner1);
-        Property property3 = new Property(3, 1500000,apartment3, owner2);
-        Property property4 = new Property(4, 900000,apartment4, owner2, owner1);
+        Property property1 = new Property(1,1000000,apartment1, owner1);
+        Property property2 = new Property(2, 2000000,apartment1, owner2);
+        Property property3 = new Property(3, 1500000,apartment1, owner2);
+        Property property4 = new Property(4, 900000,apartment2, owner2);
         Client client1 = new Client("Worek", "Pieniedzy");
         Client client2 = new Client("Worek", "Kasy");
         Auction auction1 = new Auction(property1, new Date(), property1.getPrice(), 1);
@@ -38,7 +38,7 @@ public class Main {
 //         Association with attribute: Owner 1-(Property)-* Apartment
 //        !!!!!!!!!!!!!WRONG IT NEEDS TO BE *-*
 //        fixed :D now properties can have many owners
-//         Association with attribute: Owner *-(Property)-* Apartment
+//         Association with attribute: Owner *-1(Property)1-* Apartment
         System.out.println("\n=============== Asocjacja z atrybutem ===============");
         owner1.addProperty(property1);
         owner1.addProperty(property2);
@@ -48,6 +48,10 @@ public class Main {
         System.out.println(property2);
         System.out.println(property3);
         System.out.println(property4);
+        System.out.println("Apartment1 properties: "+apartment1.getProperties());
+        System.out.println("Apartment2 properties: "+apartment2.getProperties());
+        System.out.println("Apartment3 properties: "+apartment3.getProperties());
+        System.out.println("Apartment4 properties: "+apartment4.getProperties());
 
 //        // Qualified association:
         System.out.println("\n=============== Asocjacja kwalifikowana ===============");
